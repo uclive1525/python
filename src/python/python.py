@@ -1,6 +1,6 @@
 # coding = utf-8
-
-from selenium import webdriver
+from selenium import webdriver 
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 driver = webdriver.Chrome()
 driver.get('http://localhost:8080/AustralianPlat/')
@@ -10,8 +10,8 @@ if driver.title==u'澳洲金鼎':
 else:
     print('打开链接失败')
 time.sleep(2)
-driver.maximize_window()
-print('浏览器最大化处理')
+#driver.maximize_window()
+#print('浏览器最大化处理')
 time.sleep(2)
 driver.find_element_by_id("account").send_keys("test2") #输入账号
 driver.find_element_by_id("pwd").send_keys("123456") #输入密码
@@ -25,6 +25,14 @@ if  user==u'test2':#校验是否登陆成功
     print('登陆成功')
 else:
     print('登陆失败')
-time.sleep(5)
+time.sleep(2)
+move_mouse=driver.find_element_by_id('userdiv')
+ActionChains(driver).move_to_element(move_mouse).perform()
+driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/span[2]/div/ul/li[2]/a').click()
+if driver.title==u'澳洲金鼎':
+    print('登陆成功')
+else:
+    print('登陆失败')
+time.sleep(3)
 driver.quit()
 print('浏览器关闭')
