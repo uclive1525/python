@@ -26,9 +26,9 @@ if  user==u'test2':#校验是否登陆成功
 else:
     print('登陆失败')
 time.sleep(2)
-move_mouse=driver.find_element_by_id('userdiv')
+move_mouse=driver.find_element_by_id('userdiv')#获取悬浮窗事件位置
 ActionChains(driver).move_to_element(move_mouse).perform()
-driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/span[2]/div/ul/li[2]/a').click()
+driver.find_element_by_xpath('/html/body/div[1]/div/div/div[1]/span[2]/div/ul/li[2]/a').click()#点击悬浮窗的退出按钮
 if driver.title==u'澳洲金鼎':
     print('登陆成功')
 else:
